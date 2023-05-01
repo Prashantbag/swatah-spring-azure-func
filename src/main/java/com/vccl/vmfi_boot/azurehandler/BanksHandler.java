@@ -1,6 +1,7 @@
 package com.vccl.vmfi_boot.azurehandler;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.cloud.function.adapter.azure.AzureSpringBootRequestHandler;
 
@@ -22,6 +23,13 @@ public class BanksHandler extends AzureSpringBootRequestHandler<Object, Response
             @HttpTrigger(name = "bankGetRequest", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<List<Banks>> request,
             ExecutionContext context) {
         return handleRequest(request.getBody(), context);
+    }
+
+    @FunctionName("saveBank")
+    public ResponseStructure save(
+            @HttpTrigger(name = "userSaveRequest", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<Banks>> request,
+            ExecutionContext context) {
+        return handleRequest(request.getBody().get(), context);
     }
 
 }

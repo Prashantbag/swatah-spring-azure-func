@@ -11,6 +11,7 @@ import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import org.springframework.cloud.function.adapter.azure.AzureSpringBootRequestHandler;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserHandler extends AzureSpringBootRequestHandler<Object, ResponseStructure> {
@@ -20,6 +21,13 @@ public class UserHandler extends AzureSpringBootRequestHandler<Object, ResponseS
             @HttpTrigger(name = "userSaveRequest", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<User>> request,
             ExecutionContext context) {
         return handleRequest(request.getBody().get(), context);
+    }
+
+    @FunctionName("alluser")
+    public ResponseStructure getAllUser(
+            @HttpTrigger(name = "allUserRequest", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<List<User>> request,
+            ExecutionContext context) {
+        return handleRequest(request.getBody(), context);
     }
 
     @FunctionName("userGet")

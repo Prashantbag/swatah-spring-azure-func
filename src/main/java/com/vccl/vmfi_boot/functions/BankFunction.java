@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.vccl.vmfi_boot.domains.Banks;
 import com.vccl.vmfi_boot.service.BankService;
 import com.vccl.vmfi_boot.util.ResponseStructure;
 
@@ -21,5 +22,9 @@ public class BankFunction {
         return () -> bankservice.getAllBanks();
     }
 
+    @Bean("saveBank")
+    public Function<Banks,ResponseStructure> saveBank() {
+        return bank -> bankservice.saveBank(bank);
+    }
    
 }

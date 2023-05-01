@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
+
+import javax.validation.constraints.Null;
 
 @Configuration
 public class UserFunction {
@@ -17,6 +20,11 @@ public class UserFunction {
     @Bean("userSave")
     public Function<User, ResponseStructure> save() {
         return user -> userService.save(user);
+    }
+
+    @Bean("alluser")
+    public Supplier<ResponseStructure> allUser() {
+        return ()-> userService.getAll();
     }
 
     @Bean("userUpdate")

@@ -18,4 +18,8 @@ public class BanksDao {
     public List<Banks> getAllBanks(){
         return bankRepository.findAll();
     }
+
+    public Banks saveBank(Banks bank){
+        return bankRepository.save(bank);
+    } 
 }

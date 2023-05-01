@@ -3,10 +3,10 @@ package com.vccl.vmfi_boot.util;
 import lombok.Data;
 
 @Data
-public class ResponseStructure<T> {
+public class ResponseStructure {
     private String message;
     private boolean status;
-    private T data;
+    private Object data;
 
     
 }
